@@ -20,7 +20,7 @@ function Update(){
 }
 // Audio Recorder
 function registerAudio() {
-	Debug.Log("Recording Audio");
+	Debug.Log("Recording BlackAudio");
 	getAudioSource.clip = Microphone.Start(deviceName, true, 20, 44100); 
 	GetComponent.<AudioSource>().loop = true;
 	getAudioSource.Play();

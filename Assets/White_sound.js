@@ -9,10 +9,13 @@ function Start() {
 		Debug.Log("Microphone not Connected");
 	}else{
 		micIn = true; 
-		deviceName = Microphone.devices[2]; // 0 element is the default microphone
+		deviceName = Microphone.devices[1]; // 0 element is the default microphone
 	}
 	 Debug.Log(deviceName);
 	 getAudioSource = this.GetComponent("AudioSource"); /* the object where u attach this script must have an AudioSource attached */
+	
+	
+	
 	}	
 
 
@@ -20,7 +23,7 @@ function Update(){
 }
 // Audio Recorder
 function registerAudio() {
-	Debug.Log("Recording Audio");
+	Debug.Log("Recording WhiteAudio");
 	getAudioSource.clip = Microphone.Start(deviceName, true, 20, 44100); 
 	GetComponent.<AudioSource>().loop = true;
 	getAudioSource.Play();
@@ -50,7 +53,7 @@ function OnGUI(){
 			}
 		}
 
-		if(GUI.Button(Rect ( 10, 2*(buttonHeight)+10 , buttonWidth, buttonHeight), "PlayAudio")){
+		if(GUI.Button(Rect ( 110, 2*(buttonHeight)+10 , buttonWidth, buttonHeight), "PlayAudio")){
 			playAudio();
 		}
 
