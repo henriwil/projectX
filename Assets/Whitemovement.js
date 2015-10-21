@@ -36,6 +36,19 @@ function OnCollisionEnter2D(colInfo:Collision2D)
 	
 }
 
+function Open_doors(status:boolean ){
+			
+		if(status)
+		{	
+	         var gos : GameObject[];
+	         gos = GameObject.FindGameObjectsWithTag("Knapp"); 
+	 
+	         for(var i = 0; i<gos.length; i++){
+	         gos[i].SendMessage("Interacting", gameObject.name);
+	         }
+         }
+     }
+
 function Update () 
 {
 	Timer += Time.deltaTime;
@@ -43,16 +56,15 @@ function Update ()
 	{
 		if(Timer>interact_ladetid) //if not attack the last 3 seconds
 		{
-			Debug.Log("Stor");
-			interacting=1;
+			Open_doors(true);
 			transform.localScale=new Vector3(2F,2F,1F);
 			Timer = 0.0;	//reseter tiden
 		} 
 	}
 
-	if(Timer>interact_varighet&&interacting==1)	//gjør den liten igjen etter 0,5 sekunder
+	if(Timer>interact_varighet)	//gjør den liten igjen etter 0,5 sekunder
 	{
-			Debug.Log("Liten");
+			Open_doors(false);
 			transform.localScale=new Vector3(1F,1F,1F);
 			interacting=0;
 	}
@@ -98,4 +110,6 @@ function Update ()
 		GetComponent.<Rigidbody2D>().velocity.y = 0;
 		GetComponent.<Rigidbody2D>().velocity.x = 0;
 	}
+	
+	
 }
